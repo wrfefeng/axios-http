@@ -72,3 +72,38 @@ export function patchHandle (url, data) {
       })
   })
 }
+
+export function allHandle (params) {
+  return new Promise((resolve, reject) => {
+    if (!params || !params.length || params.length < 2) {
+      let message = '请传合法数组'
+      reject(message)
+    } else {
+      try {
+        let urls = []
+        for (let i = 0; i < params.length; i++) {
+          let foo = axios.get(params[i])
+          urls.push(foo)
+        }
+        axios.all(urls)
+          .then(axios.spread(function () {
+            resolve(arguments)
+          }))
+          .catch(error => {
+            reject(error)
+          })
+      } catch (err) {
+        reject(err)
+      }
+    }
+  })
+}
+
+// 并发请求调用方法
+// this.$all(['storage/', 'medicine/'，...])
+//   .then(res => {
+//     console.log(res)
+//   })
+//   .catch(res => {
+//     console.log(res)
+//   })

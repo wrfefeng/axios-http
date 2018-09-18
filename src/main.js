@@ -9,7 +9,8 @@ Vue.config.productionTip = false
 Vue.prototype.$get = httpHandle.getHandle
 Vue.prototype.$post = httpHandle.postHandle
 Vue.prototype.$delete = httpHandle.deleteHandle
-Vue.prototype.$patch =  httpHandle.patchHandle
+Vue.prototype.$patch = httpHandle.patchHandle
+Vue.prototype.$all = httpHandle.allHandle
 
 /* eslint-disable no-new */
 new Vue({
